@@ -226,7 +226,7 @@ question_fun(q5)
 
 ## Question 5 {auto-animate=true}
 
-What does the `%>%` do in the following code?
+Which of the following code produces the same vector as the code shown?
 
 ```{r}
 #| echo: true
