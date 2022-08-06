@@ -1,0 +1,941 @@
+---
+title: "Gauge Your R Skills"
+subtitle: "Interactive Quiz to Test Your Understanding"
+author: "Tyson S. Barrett, PhD"
+date: "`r paste(month.abb[lubridate::month(Sys.Date())], lubridate::year(Sys.Date()))`"
+format: 
+  revealjs:
+    scrollable: true
+    theme: moon
+    background-transition: fade
+    transition-speed: fast
+execute:
+  warning: false
+  echo: false
+  message: false
+---
+
+## Purpose
+
+This presentation is designed to allow you to gauge your comfort and familiarity with `R` code.
+
+Each slide has a question regarding `R` and then the following slide will present the answer.
+
+```{r}
+question_fun = function(..., correct = NULL){
+  dots = c(...)
+
+  for (i in seq_along(dots)){
+    if (!is.null(correct)){
+      if (i == correct)
+        cat(dots[[i]], "\n")
+    } else {
+      cat(dots[[i]], "\n\n")
+    }
+  }
+}
+```
+
+
+# R Basics
+
+## Question 1 {auto-animate=true}
+
+What does the following code do?
+
+```{r}
+#| echo: true
+#| code-line-numbers: "1-3"
+
+library(tidyverse)
+```
+
+```{r}
+#| results: "asis"
+
+q1 = c(
+  "It downloads the `tidyverse` package", 
+  "It loads (or attaches) the `tidyverse` package", 
+  "It will give an error",
+  "It creates a dataset called `tidyverse`"
+)
+question_fun(q1)
+```
+
+## Question 1 {auto-animate=true}
+
+What does the following code do?
+
+```{r}
+#| echo: true
+#| code-line-numbers: "1-3"
+
+library(tidyverse)
+```
+
+```{r}
+#| results: "asis"
+
+question_fun(q1, correct = 2)
+```
+
+
+
+
+
+## Question 2 {auto-animate=true}
+
+What does the following code do?
+
+```{r}
+#| echo: true
+
+x <- c("red", "blue")
+```
+
+```{r}
+#| results: "asis"
+
+q2 = c(
+  "It makes a 'redblue' data.frame", 
+  "It is wrong; it should look like `x = ['red', 'blue']`", 
+  "It creates a character vector called `x`",
+  "It is a data.frame called `x`"
+)
+question_fun(q2)
+```
+
+## Question 2 {auto-animate=true}
+
+What does the following code do?
+
+```{r}
+#| echo: true
+
+x <- c("red", "blue")
+```
+
+```{r}
+#| results: "asis"
+
+question_fun(q2, correct = 3)
+```
+
+
+
+
+## Question 3
+
+Which of the following sets of code would import a `.csv` file into `R`? Select all that apply.
+
+```{r}
+#| echo: true
+#| eval: false
+
+df <- read_csv("file.csv")
+df <- c("file.csv")
+df <- load("file.csv")
+df <- read.table("file.csv", sep = ",")
+```
+
+## Question 3
+
+Which of the following sets of code would import a `.csv` file into `R`? Select all that apply.
+
+```{r}
+#| echo: true
+#| code-line-numbers: "1,4"
+#| eval: false
+
+df <- read_csv("file.csv")
+df <- c("file.csv")
+df <- load("file.csv")
+df <- read.table("file.csv", sep = ",")
+```
+
+
+
+## Question 4 {auto-animate=true}
+
+What will the following code do?
+
+```{r}
+#| echo: true
+#| eval: false
+
+data("mtcars")
+```
+
+```{r}
+#| results: "asis"
+
+q4 = c(
+  "Loads the built-in `mtcars` data set",
+  "Imports an external data set called `mtcars`",
+  "This will produce a warning about needing to provide the file path"
+)
+question_fun(q4)
+```
+
+## Question 4 {auto-animate=true}
+
+What will the following code do?
+
+```{r}
+#| echo: true
+#| eval: false
+
+data("mtcars")
+```
+
+```{r}
+#| results: "asis"
+
+question_fun(q4, correct = 1)
+```
+
+
+
+
+
+
+
+
+## Question 5 {auto-animate=true}
+
+Which of the following code produces the same vector as the code shown?
+
+```{r}
+#| echo: true
+#| eval: false
+
+mtcars$mpg
+```
+
+```{r}
+#| results: "asis"
+
+q5 = c(
+  "`mtcars[['mpg']]`", 
+  "`mtcars$'mpg'`", 
+  "`mtcars[,'mpg']`",
+  "All produce the same result"
+)
+question_fun(q5)
+```
+
+## Question 5 {auto-animate=true}
+
+What does the `%>%` do in the following code?
+
+```{r}
+#| echo: true
+#| eval: false
+
+mtcars$mpg
+```
+
+```{r}
+#| results: "asis"
+
+question_fun(q5, correct = 4)
+```
+
+
+
+# Tidyverse
+
+## Question 6 {auto-animate=true}
+
+What does the `%>%` do in the following code?
+
+```{r}
+#| echo: true
+#| eval: false
+
+df %>% 
+  mutate(age_yrs = days/365)
+```
+
+```{r}
+#| results: "asis"
+
+q6 = c(
+  "It is the pipe operator and puts `df` into the first argument of `mutate()`", 
+  "It is the pipe operator and loads the `df` package", 
+  "It is the greater-than operator and loads the `df` package",
+  "It is not used correctly here; this will produce an error"
+)
+question_fun(q6)
+```
+
+## Question 6 {auto-animate=true}
+
+What does the `%>%` do in the following code?
+
+```{r}
+#| echo: true
+#| eval: false
+
+df %>% 
+  mutate(age_yrs = days/365)
+```
+
+```{r}
+#| results: "asis"
+
+question_fun(q6, correct = 1)
+```
+
+
+
+
+## Question 7 {auto-animate=true}
+
+Describe what the `filter()` function is doing in the following code.
+
+```{r}
+#| echo: true
+#| eval: false
+
+df %>% 
+  mutate(age_yrs = days/365) %>% 
+  filter(age_yrs > 10)
+```
+
+```{r}
+#| results: "asis"
+
+q7 = c(
+  "It subsets the data to include only columns where `age_yrs > 10`", 
+  "It creates a new variable that is `age_yrs > 10`",
+  "It subsets the data to include only rows where `age_yrs > 10`"
+)
+question_fun(q7)
+```
+
+## Question 7 {auto-animate=true}
+
+Describe what the `filter()` function is doing in the following code.
+
+```{r}
+#| echo: true
+#| eval: false
+
+df %>% 
+  mutate(age_yrs = days/365) %>% 
+  filter(age_yrs > 10)
+```
+
+```{r}
+#| results: "asis"
+
+question_fun(q7, correct = 3)
+```
+
+
+
+## Question 8 {auto-animate=true}
+
+Would the `df` object be updated after running this code? Why?
+
+```{r}
+#| echo: true
+#| eval: false
+
+df %>% 
+  mutate(age_yrs = days/365) %>% 
+  filter(age_yrs > 10)
+```
+
+```{r}
+#| results: "asis"
+
+q8 = c(
+  "Yes, there is no assignment happening",
+  "Yes, there is assignment happening",
+  "No, there is no assignment happening", 
+  "No, there is assignment happening"
+)
+question_fun(q8)
+```
+
+## Question 8 {auto-animate=true}
+
+Would the `df` object be updated after running this code? Why?
+
+```{r}
+#| echo: true
+#| eval: false
+
+df %>% 
+  mutate(age_yrs = days/365) %>% 
+  filter(age_yrs > 10)
+```
+
+```{r}
+#| results: "asis"
+
+question_fun(q8, correct = 3)
+```
+
+
+
+
+## Question 9 {auto-animate=true}
+
+What does the highlighted code produce?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "3-5"
+data("mtcars")
+
+ggplot(mtcars, aes(x = hp, y = mpg)) +
+  geom_point() +
+  geom_smooth()
+```
+
+```{r}
+#| results: "asis"
+
+q9 = c(
+  "A cross-tabulation of the `mtcars` data set",
+  "A scatterplot of `hp` by `mpg` with a loess curve",
+  "A ggplot of averages of `hp` and `mpg`", 
+  "An error: the `+` should be `%>%`"
+)
+question_fun(q9)
+```
+
+## Question 9 {auto-animate=true}
+
+What does the highlighted code produce?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "3-5"
+data("mtcars")
+
+ggplot(mtcars, aes(x = hp, y = mpg)) +
+  geom_point() +
+  geom_smooth()
+```
+
+```{r}
+#| results: "asis"
+
+question_fun(q9, correct = 2)
+```
+
+
+
+## Question 10 {auto-animate=true}
+
+What does the `select(contains("_yrs"))` do to `df`?
+
+```{r}
+#| echo: true
+#| eval: false
+
+df %>% 
+  select(contains("_yrs"))
+```
+
+```{r}
+#| results: "asis"
+
+q10 = c(
+  "Selects rows with '_yrs' in the cell",
+  "Selects rows based on the regular expression match",
+  "Selects columns with names that includes '_yrs'", 
+  "Selects columns with cells that match '_yrs'"
+)
+question_fun(q10)
+```
+
+## Question 10 {auto-animate=true}
+
+What does the `select(contains("_yrs"))` do to `df`?
+
+```{r}
+#| echo: true
+#| eval: false
+
+df %>% 
+  select(contains("_yrs"))
+```
+
+```{r}
+#| results: "asis"
+
+question_fun(q10, correct = 3)
+```
+
+
+
+
+
+
+# Modeling
+
+## Question 11
+
+Select the code that would run a regression with `outcome` as the dependent variable and `var1` and `var2` the independent variables?
+
+```{r}
+#| echo: true
+#| eval: false
+lm(outcome ~ var1 + var2, data = df)
+lm(outcome = var1 + var2, data = df)
+lm(outcome, var1, var2)
+lm(outcome, var1, var2, data = df)
+lm(data = df, outcome ~ var1 + var2)
+```
+
+## Question 11
+
+Select the code that would run a regression with `outcome` as the dependent variable and `var1` and `var2` the independent variables?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "1,5"
+lm(outcome ~ var1 + var2, data = df)
+lm(outcome = var1 + var2, data = df)
+lm(outcome, var1, var2)
+lm(outcome, var1, var2, data = df)
+lm(data = df, outcome ~ var1 + var2)
+```
+
+
+
+
+## Question 12 {auto-animate=true}
+
+How can you obtain p-values after running the following model?
+
+```{r}
+#| echo: true
+#| eval: false
+fit <- lm(mpg ~ hp + cyl + disp, data = mtcars)
+```
+
+```{r}
+#| results: "asis"
+
+q12 = c(
+  "`fit`",
+  "`summary(fit)`",
+  "`fit$results`"
+)
+question_fun(q12)
+```
+
+## Question 12 {auto-animate=true}
+
+How can you obtain p-values after running the following model?
+
+```{r}
+#| echo: true
+#| eval: false
+fit <- lm(mpg ~ hp + cyl + disp, data = mtcars)
+```
+
+```{r}
+#| results: "asis"
+
+question_fun(q12, correct = 2)
+```
+
+
+
+
+## Question 13
+
+Which of the following run a logistic regression?
+
+```{r}
+#| echo: true
+#| eval: false
+glm(outcome ~ var1, data = df, family = "binomial")
+lm(outcome ~ var1, data = df, family = "binomial")
+glm(outcome ~ var1, data = df, family = "logistic")
+logistic(outcome ~ var1, data = df)
+```
+
+## Question 13
+
+Which of the following run a logistic regression?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "1"
+glm(outcome ~ var1, data = df, family = "binomial")
+lm(outcome ~ var1, data = df, family = "binomial")
+glm(outcome ~ var1, data = df, family = "logistic")
+logistic(outcome ~ var1, data = df)
+```
+
+
+
+
+
+
+# Databases
+
+
+## Questions 14-16
+
+The code below will be used for the following 3 questions.
+
+```{r}
+#| echo: true
+#| eval: false
+library(DBI)
+library(odbc)
+
+con <- dbConnect(odbc(), "odbc_name")
+con_tbl <- tbl(con, in_schema("db", "tab"))
+con_tbl %>% 
+  filter(var1 == "Susan") %>% 
+  collect()
+```
+
+
+## Question 14 {auto-animate=true}
+
+What does the highlighted code do?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "4"
+library(DBI)
+library(odbc)
+
+con <- dbConnect(odbc(), "odbc_name")
+con_tbl <- tbl(con, in_schema("db", "tab"))
+con_tbl %>% 
+  filter(var1 == "Susan") %>% 
+  collect()
+```
+
+```{r}
+#| results: "asis"
+
+q14 = c(
+  "Downloads data from the database linked by 'odbc_name'",
+  "Imports metadata from the database linked by 'odbc_name'",
+  "Creates a connection with the database linked by 'odbc_name'"
+)
+question_fun(q14)
+```
+
+## Question 14 {auto-animate=true}
+
+What does the highlighted code do?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "4"
+library(DBI)
+library(odbc)
+
+con <- dbConnect(odbc(), "odbc_name")
+con_tbl <- tbl(con, in_schema("db", "tab"))
+con_tbl %>% 
+  filter(var1 == "Susan") %>% 
+  collect()
+```
+
+```{r}
+#| results: "asis"
+
+question_fun(q14, correct = 3)
+```
+
+
+
+## Question 15 {auto-animate=true}
+
+What does the highlighted code do?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "5"
+library(DBI)
+library(odbc)
+
+con <- dbConnect(odbc(), "odbc_name")
+con_tbl <- tbl(con, in_schema("db", "tab"))
+con_tbl %>% 
+  filter(var1 == "Susan") %>% 
+  collect()
+```
+
+```{r}
+#| results: "asis"
+
+q15 = c(
+  "Downloads data from the 'tab' table in the 'db' schema",
+  "Creates a 'lazy' query from the 'tab' table in the 'db' schema",
+  "Finds the 'tab' table in the 'db' schema and provides row and column counts"
+)
+question_fun(q15)
+```
+
+## Question 15 {auto-animate=true}
+
+What does the highlighted code do?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "5"
+library(DBI)
+library(odbc)
+
+con <- dbConnect(odbc(), "odbc_name")
+con_tbl <- tbl(con, in_schema("db", "tab"))
+con_tbl %>% 
+  filter(var1 == "Susan") %>% 
+  collect()
+```
+
+```{r}
+#| results: "asis"
+
+question_fun(q15, correct = 2)
+```
+
+
+## Question 16 {auto-animate=true}
+
+What does the highlighted code do?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "6-8"
+library(DBI)
+library(odbc)
+
+con <- dbConnect(odbc(), "odbc_name")
+con_tbl <- tbl(con, in_schema("db", "tab"))
+con_tbl %>% 
+  filter(var1 == "Susan") %>% 
+  collect()
+```
+
+```{r}
+#| results: "asis"
+
+q16 = c(
+  "Downloads data from the 'tab' table in the 'db' schema where the rows in var1 match 'Susan'",
+  "Creates a lazy query where the rows in var1 match 'Susan'",
+  "Summarizes the 'tab' table in the 'db' schema with metadata"
+)
+question_fun(q16)
+```
+
+## Question 16 {auto-animate=true}
+
+What does the highlighted code do?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "6-8"
+library(DBI)
+library(odbc)
+
+con <- dbConnect(odbc(), "odbc_name")
+con_tbl <- tbl(con, in_schema("db", "tab"))
+con_tbl %>% 
+  filter(var1 == "Susan") %>% 
+  collect()
+```
+
+```{r}
+#| results: "asis"
+
+question_fun(q16, correct = 1)
+```
+
+
+
+
+# Advanced Tools
+
+## Question 17 {auto-animate=true}
+
+Which of the following code chunks will apply a function to several columns? Select all that apply.
+
+```{r}
+#| echo: true
+#| eval: false
+df %>% 
+  mutate(across(var1:var3, ~factor(.x)))
+```
+
+```{r}
+#| echo: true
+#| eval: false
+map_df(df[, c("var1", "var2", "var3")], ~factor(.x))
+```
+
+```{r}
+#| echo: true
+#| eval: false
+vars = c("var1", "var2", "var3")
+for (i in vars){
+  df[, i] <- factor(df[, i])
+}
+```
+
+```{r}
+#| results: "asis"
+
+q17 = c(
+  "The first code chunk",
+  "The second code chunk",
+  "Both the first and second code chunks",
+  "All of these code chunks"
+)
+question_fun(q17)
+```
+
+## Question 17 {auto-animate=true}
+
+What does the highlighted code do?
+
+```{r}
+#| echo: true
+#| eval: false
+df %>% 
+  mutate(across(var1:var3, ~factor(.x)))
+```
+
+```{r}
+#| echo: true
+#| eval: false
+map_df(df[, c("var1", "var2", "var3")], ~factor(.x))
+```
+
+```{r}
+#| echo: true
+#| eval: false
+vars = c("var1", "var2", "var3")
+for (i in vars){
+  df[, i] <- factor(df[, i])
+}
+```
+
+```{r}
+#| results: "asis"
+
+question_fun(q17, correct = 1)
+```
+
+
+
+## Question 18 {auto-animate=true}
+
+What does the following code do if you run this code chunk?
+
+```{r}
+#| echo: true
+#| eval: false
+make_scatter <- function(df){
+  ggplot(df) +
+    aes(x = mpg, y = hp) +
+    geom_point()
+}
+```
+
+```{r}
+#| results: "asis"
+
+q18 = c(
+  "The code will produce a scatter plot",
+  "The code will create a function called `make_scatter` but will not actually run the code",
+  "The code will create a function called `make_scatter` and will run the code",
+  "The code will not work"
+)
+question_fun(q18)
+```
+
+## Question 18 {auto-animate=true}
+
+What does the following code do if you run this code chunk?
+
+```{r}
+#| echo: true
+#| eval: false
+make_scatter <- function(df){
+  ggplot(df) +
+    aes(x = mpg, y = hp) +
+    geom_point()
+}
+```
+
+```{r}
+#| results: "asis"
+
+question_fun(q18, correct = 2)
+```
+
+
+
+
+
+
+# Review and Resources
+
+## Topics {auto-animate=true}
+
+We covered:
+
+- Basics
+- The tidyverse
+- Modeling
+- Databases
+
+Which topics were easy for you?
+
+Which topics were difficult? 
+
+## Topics {auto-animate=true}
+
+:::{style="font-size: 2em; color: white;"}
+Which topics were difficult? 
+:::
+
+If it included each of the topics (especially the basics), beginning with the "Intro to R" workshop will be best. 
+
+If it included only some aspects of the tidyverse, modeling, or databases, then the "Intermediate R" workshop is probably best for you.
+
+
+## Free Resources
+
+As is common in the `R` community, there are *many* free resources to learn `R`. 
+
+*Scroll to see all items*
+
+- [R For Data Science](https://r4ds.had.co.nz)
+- [Tidymodels (includes 5 books)](https://www.tidymodels.org/books/)
+- [Mastering Spark with R](https://therinspark.com)
+- [Mastering Shiny](https://mastering-shiny.org)
+- [Cheatsheets](https://www.rstudio.com/resources/cheatsheets/)
+- [Andrew Heiss's Course Materials](https://www.andrewheiss.com)
+- [Tidy Tuesday Repo](https://github.com/rfordatascience/tidytuesday)
+- [Twitter #rstats](https://twitter.com/search?q=%23rstats&src=typed_query)
+
+
+
