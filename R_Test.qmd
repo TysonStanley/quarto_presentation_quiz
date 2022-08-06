@@ -813,7 +813,7 @@ question_fun(q17)
 
 ## Question 17 {auto-animate=true}
 
-What does the highlighted code do?
+Which of the following code chunks will apply a function to several columns? Select all that apply.
 
 ```{r}
 #| echo: true
@@ -840,7 +840,7 @@ for (i in vars){
 ```{r}
 #| results: "asis"
 
-question_fun(q17, correct = 1)
+question_fun(q17, correct = 4)
 ```
 
 
@@ -864,8 +864,8 @@ make_scatter <- function(df){
 
 q18 = c(
   "The code will produce a scatter plot",
-  "The code will create a function called `make_scatter` but will not actually run the code",
-  "The code will create a function called `make_scatter` and will run the code",
+  "The code will create a function called `make_scatter` but will not actually create a plot at this point",
+  "The code will create a function called `make_scatter` and will create a scatter plot",
   "The code will not work"
 )
 question_fun(q18)
