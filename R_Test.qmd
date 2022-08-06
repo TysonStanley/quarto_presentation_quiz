@@ -902,10 +902,11 @@ question_fun(q18, correct = 2)
 
 We covered:
 
-- Basics
+- R Basics
 - The tidyverse
-- Modeling
-- Databases
+- Basic modeling
+- Working with databases
+- Some advanced features
 
 Which topics were easy for you?
 
